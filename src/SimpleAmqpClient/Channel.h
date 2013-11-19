@@ -94,6 +94,7 @@ public:
         return boost::make_shared<Channel>(host, port, username, password, vhost, frame_max);
     }
 
+#ifdef ENABLE_SSL_SUPPORT
     /**
     * Creates a new channel object
     * Creates a new connection to an AMQP broker using the supplied parameters and opens
@@ -133,6 +134,7 @@ public:
                                            path_to_client_key,
                                            path_to_client_cert);
     }
+#endif //ifdef ENABLE_SSL_SUPPORT
 
 
     /**
@@ -151,6 +153,7 @@ public:
                      const std::string &vhost,
                      int frame_max);
 
+#ifdef ENABLE_SSL_SUPPORT
     explicit Channel(const std::string &host,
                      int port,
                      const std::string &username,
@@ -160,6 +163,7 @@ public:
                      const std::string &path_to_ca_cert,
                      const std::string &path_to_client_key,
                      const std::string &path_to_client_cert);
+#endif //ifdef ENABLE_SSL_SUPPORT
 
 
 public:

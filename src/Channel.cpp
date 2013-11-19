@@ -31,7 +31,9 @@
 #include <amqp.h>
 #include <amqp_framing.h>
 #include <amqp_tcp_socket.h>
-#include <amqp_ssl_socket.h>
+#ifdef ENABLE_SSL_SUPPORT
+  #include <amqp_ssl_socket.h>
+#endif //ifdef ENABLE_SSL_SUPPORT
 
 #include "SimpleAmqpClient/Channel.h"
 
@@ -120,6 +122,7 @@ Channel::Channel(const std::string &host,
     m_impl->SetIsConnected(true);
 }
 
+#ifdef ENABLE_SSL_SUPPORT
 Channel::Channel(const std::string &host,
                  int port,
                  const std::string &username,
@@ -179,6 +182,7 @@ Channel::Channel(const std::string &host,
 
     m_impl->SetIsConnected(true);
 }
+#endif //ifdef ENABLE_SSL_SUPPORT
 
 
 
